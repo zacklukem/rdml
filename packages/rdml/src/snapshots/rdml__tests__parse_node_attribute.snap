@@ -1,0 +1,167 @@
+---
+source: packages/rdml/src/lib.rs
+expression: result
+---
+Nodes {
+    nodes: [
+        Node {
+            attrs: [
+                Attribute {
+                    pound_token: Pound,
+                    style: AttrStyle::Outer,
+                    bracket_token: Bracket,
+                    meta: Meta::Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    attribute,
+                                ),
+                                arguments: PathArguments::None,
+                            },
+                        ],
+                    },
+                },
+            ],
+            node: Element(
+                Element {
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    div,
+                                ),
+                                arguments: PathArguments::None,
+                            },
+                        ],
+                    },
+                    attributes: None,
+                    children: Block {
+                        brace_token: Brace,
+                        nodes: [],
+                    },
+                },
+            ),
+        },
+        Node {
+            attrs: [
+                Attribute {
+                    pound_token: Pound,
+                    style: AttrStyle::Outer,
+                    bracket_token: Bracket,
+                    meta: Meta::List {
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        attribute,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                        delimiter: MacroDelimiter::Paren(
+                            Paren,
+                        ),
+                        tokens: TokenStream [
+                            Punct {
+                                char: '|',
+                                spacing: Joint,
+                            },
+                            Punct {
+                                char: '|',
+                                spacing: Alone,
+                            },
+                            Ident {
+                                sym: expr,
+                            },
+                        ],
+                    },
+                },
+            ],
+            node: If(
+                IfNode {
+                    if_token: If,
+                    cond: Expr::Lit {
+                        attrs: [],
+                        lit: Lit::Bool {
+                            value: true,
+                        },
+                    },
+                    then_branch: Block {
+                        brace_token: Brace,
+                        nodes: [],
+                    },
+                    else_branch: None,
+                },
+            ),
+        },
+        Node {
+            attrs: [
+                Attribute {
+                    pound_token: Pound,
+                    style: AttrStyle::Outer,
+                    bracket_token: Bracket,
+                    meta: Meta::Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    attribute,
+                                ),
+                                arguments: PathArguments::None,
+                            },
+                        ],
+                    },
+                },
+            ],
+            node: Text(
+                LitStr {
+                    token: "hello",
+                },
+            ),
+        },
+        Node {
+            attrs: [
+                Attribute {
+                    pound_token: Pound,
+                    style: AttrStyle::Outer,
+                    bracket_token: Bracket,
+                    meta: Meta::Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    attribute,
+                                ),
+                                arguments: PathArguments::None,
+                            },
+                        ],
+                    },
+                },
+            ],
+            node: Expr(
+                ExprNode {
+                    brace_token: Brace,
+                    expr: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        expr,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                },
+            ),
+        },
+    ],
+}

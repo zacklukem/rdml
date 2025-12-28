@@ -64,6 +64,20 @@ mod tests {
     }
 
     #[test]
+    fn test_parse_node_attribute() {
+        snapshot_test! {
+            #[attribute]
+            div {}
+            #[attribute(|| expr)]
+            if true {}
+            #[attribute]
+            "hello"
+            #[attribute]
+            {expr}
+        }
+    }
+
+    #[test]
     fn test_parse_if() {
         snapshot_test! {
             if condition {

@@ -1,5 +1,5 @@
 use syn::{
-    Expr, LitStr, Result, Token, braced,
+    Attribute, Expr, LitStr, Result, Token, braced,
     parse::{Parse, ParseStream},
     token::Brace,
 };
@@ -23,14 +23,14 @@ impl Parse for ExprNode {
 }
 
 #[derive(Debug, PartialEq, Hash)]
-pub enum Node {
+pub enum NodeType {
     Element(Element),
     Text(LitStr),
     Expr(ExprNode),
     If(IfNode),
 }
 
-impl Parse for Node {
+impl Parse for NodeType {
     fn parse(input: ParseStream) -> Result<Self> {
         if input.peek(Token![if]) {
             Ok(Self::If(input.parse()?))
@@ -41,5 +41,20 @@ impl Parse for Node {
         } else {
             Ok(Self::Element(input.parse()?))
         }
+    }
+}
+
+#[derive(Debug, PartialEq, Hash)]
+pub struct Node {
+    attrs: Vec<Attribute>,
+    node: NodeType,
+}
+
+impl Parse for Node {
+    fn parse(input: ParseStream) -> Result<Self> {
+        Ok(Node {
+            attrs: input.call(Attribute::parse_outer)?,
+            node: input.parse()?,
+        })
     }
 }

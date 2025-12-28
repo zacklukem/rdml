@@ -4,174 +4,134 @@ expression: result
 ---
 Nodes {
     nodes: [
-        Element(
-            Element {
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment {
-                            ident: Ident(
-                                div,
-                            ),
-                            arguments: PathArguments::None,
-                        },
-                    ],
-                },
-                attributes: Some(
-                    Attributes {
-                        paren_token: Paren,
-                        attributes: [
-                            Attribute {
-                                name: Single(
-                                    Path {
-                                        leading_colon: None,
-                                        segments: [
-                                            PathSegment {
-                                                ident: Ident(
-                                                    single,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                        ],
-                                    },
+        Node {
+            attrs: [],
+            node: Element(
+                Element {
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    div,
                                 ),
-                                eq_token: Eq,
-                                value: Expr::Lit {
-                                    attrs: [],
-                                    lit: Lit::Str {
-                                        token: "single",
-                                    },
-                                },
+                                arguments: PathArguments::None,
                             },
-                            Comma,
-                            Attribute {
-                                name: Quoted(
-                                    LitStr {
-                                        token: "quoted",
-                                    },
-                                ),
-                                eq_token: Eq,
-                                value: Expr::Lit {
-                                    attrs: [],
-                                    lit: Lit::Str {
-                                        token: "quoted",
-                                    },
-                                },
-                            },
-                            Comma,
-                            Attribute {
-                                name: Directive(
-                                    AttributeNameDirective {
-                                        directive: Ident(
-                                            dir,
-                                        ),
-                                        colon_token: Colon,
-                                        path: Path {
+                        ],
+                    },
+                    attributes: Some(
+                        Attributes {
+                            paren_token: Paren,
+                            attributes: [
+                                Attribute {
+                                    name: Single(
+                                        Path {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
                                                     ident: Ident(
-                                                        ective,
+                                                        single,
                                                     ),
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
                                         },
-                                    },
-                                ),
-                                eq_token: Eq,
-                                value: Expr::Lit {
-                                    attrs: [],
-                                    lit: Lit::Str {
-                                        token: "directive",
-                                    },
-                                },
-                            },
-                            Comma,
-                            Attribute {
-                                name: Single(
-                                    Path {
-                                        leading_colon: Some(
-                                            PathSep,
-                                        ),
-                                        segments: [
-                                            PathSegment {
-                                                ident: Ident(
-                                                    rdml,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                            PathSep,
-                                            PathSegment {
-                                                ident: Ident(
-                                                    attribute,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                            PathSep,
-                                            PathSegment {
-                                                ident: Ident(
-                                                    Attribute,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                        ],
-                                    },
-                                ),
-                                eq_token: Eq,
-                                value: Expr::Lit {
-                                    attrs: [],
-                                    lit: Lit::Str {
-                                        token: "leading non-directive path",
+                                    ),
+                                    eq_token: Eq,
+                                    value: Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Str {
+                                            token: "single",
+                                        },
                                     },
                                 },
-                            },
-                            Comma,
-                            Attribute {
-                                name: Single(
-                                    Path {
-                                        leading_colon: None,
-                                        segments: [
-                                            PathSegment {
-                                                ident: Ident(
-                                                    rdml,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                            PathSep,
-                                            PathSegment {
-                                                ident: Ident(
-                                                    attribute,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                            PathSep,
-                                            PathSegment {
-                                                ident: Ident(
-                                                    Attribute,
-                                                ),
-                                                arguments: PathArguments::None,
-                                            },
-                                        ],
-                                    },
-                                ),
-                                eq_token: Eq,
-                                value: Expr::Lit {
-                                    attrs: [],
-                                    lit: Lit::Str {
-                                        token: "non-directive path",
+                                Comma,
+                                Attribute {
+                                    name: Quoted(
+                                        LitStr {
+                                            token: "quoted",
+                                        },
+                                    ),
+                                    eq_token: Eq,
+                                    value: Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Str {
+                                            token: "quoted",
+                                        },
                                     },
                                 },
-                            },
-                            Comma,
-                            Attribute {
-                                name: Directive(
-                                    AttributeNameDirective {
-                                        directive: Ident(
-                                            directive,
-                                        ),
-                                        colon_token: Colon,
-                                        path: Path {
+                                Comma,
+                                Attribute {
+                                    name: Directive(
+                                        AttributeNameDirective {
+                                            directive: Ident(
+                                                dir,
+                                            ),
+                                            colon_token: Colon,
+                                            path: Path {
+                                                leading_colon: None,
+                                                segments: [
+                                                    PathSegment {
+                                                        ident: Ident(
+                                                            ective,
+                                                        ),
+                                                        arguments: PathArguments::None,
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ),
+                                    eq_token: Eq,
+                                    value: Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Str {
+                                            token: "directive",
+                                        },
+                                    },
+                                },
+                                Comma,
+                                Attribute {
+                                    name: Single(
+                                        Path {
+                                            leading_colon: Some(
+                                                PathSep,
+                                            ),
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        rdml,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                                PathSep,
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        attribute,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                                PathSep,
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        Attribute,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                    ),
+                                    eq_token: Eq,
+                                    value: Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Str {
+                                            token: "leading non-directive path",
+                                        },
+                                    },
+                                },
+                                Comma,
+                                Attribute {
+                                    name: Single(
+                                        Path {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
@@ -196,25 +156,68 @@ Nodes {
                                                 },
                                             ],
                                         },
-                                    },
-                                ),
-                                eq_token: Eq,
-                                value: Expr::Lit {
-                                    attrs: [],
-                                    lit: Lit::Str {
-                                        token: "directive path",
+                                    ),
+                                    eq_token: Eq,
+                                    value: Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Str {
+                                            token: "non-directive path",
+                                        },
                                     },
                                 },
-                            },
-                            Comma,
-                        ],
+                                Comma,
+                                Attribute {
+                                    name: Directive(
+                                        AttributeNameDirective {
+                                            directive: Ident(
+                                                directive,
+                                            ),
+                                            colon_token: Colon,
+                                            path: Path {
+                                                leading_colon: None,
+                                                segments: [
+                                                    PathSegment {
+                                                        ident: Ident(
+                                                            rdml,
+                                                        ),
+                                                        arguments: PathArguments::None,
+                                                    },
+                                                    PathSep,
+                                                    PathSegment {
+                                                        ident: Ident(
+                                                            attribute,
+                                                        ),
+                                                        arguments: PathArguments::None,
+                                                    },
+                                                    PathSep,
+                                                    PathSegment {
+                                                        ident: Ident(
+                                                            Attribute,
+                                                        ),
+                                                        arguments: PathArguments::None,
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ),
+                                    eq_token: Eq,
+                                    value: Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Str {
+                                            token: "directive path",
+                                        },
+                                    },
+                                },
+                                Comma,
+                            ],
+                        },
+                    ),
+                    children: Block {
+                        brace_token: Brace,
+                        nodes: [],
                     },
-                ),
-                children: Block {
-                    brace_token: Brace,
-                    nodes: [],
                 },
-            },
-        ),
+            ),
+        },
     ],
 }

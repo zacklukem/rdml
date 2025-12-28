@@ -4,60 +4,54 @@ expression: result
 ---
 Nodes {
     nodes: [
-        Text(
-            LitStr {
-                token: "text here",
-            },
-        ),
-        Element(
-            Element {
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment {
-                            ident: Ident(
-                                div,
-                            ),
-                            arguments: PathArguments::None,
-                        },
-                    ],
+        Node {
+            attrs: [],
+            node: Text(
+                LitStr {
+                    token: "text here",
                 },
-                attributes: None,
-                children: Block {
-                    brace_token: Brace,
-                    nodes: [
-                        Text(
-                            LitStr {
-                                token: "stuff inside of elements",
+            ),
+        },
+        Node {
+            attrs: [],
+            node: Element(
+                Element {
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    div,
+                                ),
+                                arguments: PathArguments::None,
                             },
-                        ),
-                    ],
-                },
-            },
-        ),
-        Expr(
-            ExprNode {
-                brace_token: Brace,
-                expr: Expr::Call {
-                    attrs: [],
-                    func: Expr::Path {
-                        attrs: [],
-                        qself: None,
-                        path: Path {
-                            leading_colon: None,
-                            segments: [
-                                PathSegment {
-                                    ident: Ident(
-                                        expr,
-                                    ),
-                                    arguments: PathArguments::None,
-                                },
-                            ],
-                        },
+                        ],
                     },
-                    paren_token: Paren,
-                    args: [
-                        Expr::Path {
+                    attributes: None,
+                    children: Block {
+                        brace_token: Brace,
+                        nodes: [
+                            Node {
+                                attrs: [],
+                                node: Text(
+                                    LitStr {
+                                        token: "stuff inside of elements",
+                                    },
+                                ),
+                            },
+                        ],
+                    },
+                },
+            ),
+        },
+        Node {
+            attrs: [],
+            node: Expr(
+                ExprNode {
+                    brace_token: Brace,
+                    expr: Expr::Call {
+                        attrs: [],
+                        func: Expr::Path {
                             attrs: [],
                             qself: None,
                             path: Path {
@@ -65,16 +59,34 @@ Nodes {
                                 segments: [
                                     PathSegment {
                                         ident: Ident(
-                                            here,
+                                            expr,
                                         ),
                                         arguments: PathArguments::None,
                                     },
                                 ],
                             },
                         },
-                    ],
+                        paren_token: Paren,
+                        args: [
+                            Expr::Path {
+                                attrs: [],
+                                qself: None,
+                                path: Path {
+                                    leading_colon: None,
+                                    segments: [
+                                        PathSegment {
+                                            ident: Ident(
+                                                here,
+                                            ),
+                                            arguments: PathArguments::None,
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                    },
                 },
-            },
-        ),
+            ),
+        },
     ],
 }
