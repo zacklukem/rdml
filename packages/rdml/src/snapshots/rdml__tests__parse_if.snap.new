@@ -1,0 +1,232 @@
+---
+source: packages/rdml/src/lib.rs
+assertion_line: 68
+expression: result
+---
+Nodes {
+    nodes: [
+        If(
+            IfNode {
+                if_token: If,
+                cond: Expr::Path {
+                    attrs: [],
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment {
+                                ident: Ident(
+                                    condition,
+                                ),
+                                arguments: PathArguments::None,
+                            },
+                        ],
+                    },
+                },
+                then_branch: Block {
+                    brace_token: Brace,
+                    nodes: [
+                        Text(
+                            LitStr {
+                                token: "if body",
+                            },
+                        ),
+                    ],
+                },
+                else_branch: None,
+            },
+        ),
+        If(
+            IfNode {
+                if_token: If,
+                cond: Expr::Binary {
+                    attrs: [],
+                    left: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        condition,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                    op: BinOp::And(
+                        AndAnd,
+                    ),
+                    right: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        else_block,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                },
+                then_branch: Block {
+                    brace_token: Brace,
+                    nodes: [
+                        Text(
+                            LitStr {
+                                token: "if body",
+                            },
+                        ),
+                    ],
+                },
+                else_branch: Some(
+                    (
+                        Else,
+                        Else(
+                            Block {
+                                brace_token: Brace,
+                                nodes: [
+                                    Text(
+                                        LitStr {
+                                            token: "else body",
+                                        },
+                                    ),
+                                ],
+                            },
+                        ),
+                    ),
+                ),
+            },
+        ),
+        If(
+            IfNode {
+                if_token: If,
+                cond: Expr::Binary {
+                    attrs: [],
+                    left: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        condition,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                    op: BinOp::And(
+                        AndAnd,
+                    ),
+                    right: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        else_block,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                },
+                then_branch: Block {
+                    brace_token: Brace,
+                    nodes: [
+                        Text(
+                            LitStr {
+                                token: "if body",
+                            },
+                        ),
+                    ],
+                },
+                else_branch: Some(
+                    (
+                        Else,
+                        If(
+                            IfNode {
+                                if_token: If,
+                                cond: Expr::Binary {
+                                    attrs: [],
+                                    left: Expr::Path {
+                                        attrs: [],
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        condition,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                    },
+                                    op: BinOp::And(
+                                        AndAnd,
+                                    ),
+                                    right: Expr::Path {
+                                        attrs: [],
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        else_if_block,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                    },
+                                },
+                                then_branch: Block {
+                                    brace_token: Brace,
+                                    nodes: [
+                                        Text(
+                                            LitStr {
+                                                token: "else if body",
+                                            },
+                                        ),
+                                    ],
+                                },
+                                else_branch: Some(
+                                    (
+                                        Else,
+                                        Else(
+                                            Block {
+                                                brace_token: Brace,
+                                                nodes: [
+                                                    Text(
+                                                        LitStr {
+                                                            token: "else body",
+                                                        },
+                                                    ),
+                                                ],
+                                            },
+                                        ),
+                                    ),
+                                ),
+                            },
+                        ),
+                    ),
+                ),
+            },
+        ),
+    ],
+}

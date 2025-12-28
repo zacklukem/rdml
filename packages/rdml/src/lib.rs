@@ -1,12 +1,15 @@
+mod helpers;
+
 mod attribute;
 mod block;
 mod element;
-mod helpers;
+mod if_node;
 mod node;
 
 pub use attribute::*;
 pub use block::*;
 pub use element::*;
+pub use if_node::*;
 pub use node::*;
 
 #[cfg(test)]
@@ -57,6 +60,29 @@ mod tests {
                 "stuff inside of elements"
             }
             {expr(here)}
+        }
+    }
+
+    #[test]
+    fn test_parse_if() {
+        snapshot_test! {
+            if condition {
+                "if body"
+            }
+
+            if condition && else_block {
+                "if body"
+            } else {
+                "else body"
+            }
+
+            if condition && else_block {
+                "if body"
+            } else if condition && else_if_block {
+                "else if body"
+            } else {
+                "else body"
+            }
         }
     }
 }

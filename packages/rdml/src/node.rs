@@ -1,10 +1,10 @@
 use syn::{
-    Expr, LitStr, Result, braced,
+    Expr, LitStr, Result, Token, braced,
     parse::{Parse, ParseStream},
     token::Brace,
 };
 
-use crate::Element;
+use crate::{Element, IfNode};
 
 #[derive(Debug, PartialEq, Hash)]
 pub struct ExprNode {
@@ -27,11 +27,14 @@ pub enum Node {
     Element(Element),
     Text(LitStr),
     Expr(ExprNode),
+    If(IfNode),
 }
 
 impl Parse for Node {
     fn parse(input: ParseStream) -> Result<Self> {
-        if input.peek(LitStr) {
+        if input.peek(Token![if]) {
+            Ok(Self::If(input.parse()?))
+        } else if input.peek(LitStr) {
             Ok(Self::Text(input.parse()?))
         } else if input.peek(Brace) {
             Ok(Self::Expr(input.parse()?))
