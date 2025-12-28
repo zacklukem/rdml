@@ -1,0 +1,115 @@
+---
+source: packages/rdml/src/lib.rs
+expression: result
+---
+Nodes {
+    nodes: [
+        Element(
+            Element {
+                path: Path {
+                    leading_colon: None,
+                    segments: [
+                        PathSegment {
+                            ident: Ident(
+                                div,
+                            ),
+                            arguments: PathArguments::None,
+                        },
+                    ],
+                },
+                attributes: None,
+                children: Block {
+                    brace_token: Brace,
+                    nodes: [],
+                },
+            },
+        ),
+        Element(
+            Element {
+                path: Path {
+                    leading_colon: Some(
+                        PathSep,
+                    ),
+                    segments: [
+                        PathSegment {
+                            ident: Ident(
+                                full,
+                            ),
+                            arguments: PathArguments::None,
+                        },
+                        PathSep,
+                        PathSegment {
+                            ident: Ident(
+                                path,
+                            ),
+                            arguments: PathArguments::None,
+                        },
+                        PathSep,
+                        PathSegment {
+                            ident: Ident(
+                                to,
+                            ),
+                            arguments: PathArguments::None,
+                        },
+                        PathSep,
+                        PathSegment {
+                            ident: Ident(
+                                div,
+                            ),
+                            arguments: PathArguments::None,
+                        },
+                    ],
+                },
+                attributes: None,
+                children: Block {
+                    brace_token: Brace,
+                    nodes: [],
+                },
+            },
+        ),
+        Element(
+            Element {
+                path: Path {
+                    leading_colon: None,
+                    segments: [
+                        PathSegment {
+                            ident: Ident(
+                                Component,
+                            ),
+                            arguments: PathArguments::AngleBracketed {
+                                colon2_token: Some(
+                                    PathSep,
+                                ),
+                                lt_token: Lt,
+                                args: [
+                                    GenericArgument::Type(
+                                        Type::Path {
+                                            qself: None,
+                                            path: Path {
+                                                leading_colon: None,
+                                                segments: [
+                                                    PathSegment {
+                                                        ident: Ident(
+                                                            WithGenerics,
+                                                        ),
+                                                        arguments: PathArguments::None,
+                                                    },
+                                                ],
+                                            },
+                                        },
+                                    ),
+                                ],
+                                gt_token: Gt,
+                            },
+                        },
+                    ],
+                },
+                attributes: None,
+                children: Block {
+                    brace_token: Brace,
+                    nodes: [],
+                },
+            },
+        ),
+    ],
+}
