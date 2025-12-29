@@ -1,3 +1,29 @@
+//! A generic templating language for rust ui frameworks
+//!
+//! This is meant to be used for creating procedural macros to generate ui code.
+//!
+//! # Implementors
+//!
+//!  - [`rdml_leptos`](https://docs.rs/rdml_leptos)
+//!
+//! # Example
+//!
+//! ```ignore
+//! #[proc_macro]
+//! pub fn rdml(tokens: proc_macro::TokenStream) -> proc_macro::TokenStream {
+//!     let nodes = parse_macro_input!(tokens as Nodes);
+//!
+//!     let nodes = nodes.nodes.iter().map(generate_node);
+//!
+//!     quote! {
+//!         ::leptos::prelude::view! {
+//!             #(#nodes)*
+//!         }
+//!     }
+//!     .into()
+//! }
+//! ```
+
 mod helpers;
 
 mod attribute;

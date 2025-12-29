@@ -5,6 +5,14 @@ use syn::{
 
 use crate::Block;
 
+/// A for node
+///
+/// # Example
+/// ```ignore
+/// for pattern in expr {
+///     div {}
+/// }
+/// ```
 #[derive(Debug, PartialEq, Hash)]
 pub struct ForNode {
     pub for_token: Token![for],

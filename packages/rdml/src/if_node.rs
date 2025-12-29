@@ -5,6 +5,18 @@ use syn::{
 
 use crate::Block;
 
+/// An if template literal
+///
+/// # Example
+/// ```ignore
+/// if condition {
+///     div {}
+/// } else if condition {
+///     div {}
+/// } else {
+///     div {}
+/// }
+/// ```
 #[derive(Debug, PartialEq, Hash)]
 pub struct IfNode {
     pub if_token: Token![if],
@@ -27,6 +39,7 @@ impl Parse for IfNode {
     }
 }
 
+/// Either an `else if {}` clause or an `else {}` clause.
 #[derive(Debug, PartialEq, Hash)]
 pub enum ElseNode {
     If(Box<IfNode>),

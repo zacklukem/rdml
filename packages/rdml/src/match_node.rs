@@ -6,6 +6,20 @@ use syn::{
 
 use crate::{Node, NodeType, helpers::ParseHelpers};
 
+/// A match node (`match {}`)
+///
+/// Match arms can be a single node, or a block of nodes.
+///
+/// # Example
+/// ```ignore
+/// match expr {
+///     Some(_) => div {}
+///     None => {
+///         div {}
+///         span {}
+///     }
+/// }
+/// ```
 #[derive(Debug, PartialEq, Hash)]
 pub struct MatchNode {
     pub match_token: Token![match],
@@ -27,6 +41,7 @@ impl Parse for MatchNode {
     }
 }
 
+/// A match node arm. (`pattern => node`)
 #[derive(Debug, PartialEq, Hash)]
 pub struct MatchNodeArm {
     pub pat: Pat,

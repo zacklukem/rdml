@@ -6,6 +6,7 @@ use syn::{
 
 use crate::{Block, Element, ForNode, IfNode, MatchNode};
 
+/// An expression interpolation node: `(1 + 1)`.
 #[derive(Debug, PartialEq, Hash)]
 pub struct ExprNode {
     pub paren_token: Paren,
@@ -22,14 +23,28 @@ impl Parse for ExprNode {
     }
 }
 
+/// A [`Node`] without attributes
 #[derive(Debug, PartialEq, Hash)]
 pub enum NodeType {
+    /// Element: `div {}`
     Element(Element),
+
+    /// Text literal: `"Hello, world!"`
     Text(LitStr),
+
+    /// Expression literal: `(1 + 1)`
     Expr(ExprNode),
+
+    /// If node: `if condition { [...] }`
     If(IfNode),
+
+    /// For node: `for pattern in expr { [...] }`
     For(ForNode),
+
+    /// Match node: `match expr { [...] }`
     Match(MatchNode),
+
+    /// A block fragment: `{ div {} span {} [...] }`
     Block(Block),
 }
 
@@ -53,6 +68,7 @@ impl Parse for NodeType {
     }
 }
 
+/// A node with attributes
 #[derive(Debug, PartialEq, Hash)]
 pub struct Node {
     pub attrs: Vec<Attribute>,

@@ -6,6 +6,18 @@ use syn::{
 
 use crate::{Attributes, Block};
 
+/// An element
+///
+/// # Examples
+/// ## Without attributes
+/// ```ignore
+/// div {}
+/// ```
+///
+/// ## With attributes
+/// ```ignore
+/// div(class="hello", name=format!("{first_name} {last_name}")) {}
+/// ```
 #[derive(Debug, PartialEq, Hash)]
 pub struct Element {
     pub path: Path,

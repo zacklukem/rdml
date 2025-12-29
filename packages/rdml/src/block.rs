@@ -6,6 +6,7 @@ use syn::{
 
 use crate::{Node, helpers::ParseHelpers};
 
+/// A block of nodes surrounded by braces: `{ div {} [...] }`
 #[derive(Debug, PartialEq, Hash)]
 pub struct Block {
     pub brace_token: Brace,

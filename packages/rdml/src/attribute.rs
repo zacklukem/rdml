@@ -7,6 +7,7 @@ use syn::{
     token::Paren,
 };
 
+/// An attribute name with a directive: `on:click`
 #[derive(Debug, PartialEq, Hash)]
 pub struct AttributeNameDirective {
     pub directive: Ident,
@@ -24,10 +25,16 @@ impl Parse for AttributeNameDirective {
     }
 }
 
+/// An attribute name
 #[derive(Debug, PartialEq, Hash)]
 pub enum AttributeName {
+    /// A single attribute name: `class` or `::package::attributes::id`
     Single(Path),
+
+    /// A quoted attribute name: `"aria-label"`
     Quoted(LitStr),
+
+    /// A directive attribute name: `on:click` or `bind:binds::value`
     Directive(AttributeNameDirective),
 }
 
@@ -43,6 +50,7 @@ impl Parse for AttributeName {
     }
 }
 
+/// An attribute: `class="value"`
 #[derive(Debug, PartialEq, Hash)]
 pub struct Attribute {
     pub name: AttributeName,
@@ -60,6 +68,7 @@ impl Parse for Attribute {
     }
 }
 
+/// An list of attributes: `(class="value", id="value")`
 #[derive(Debug, PartialEq, Hash)]
 pub struct Attributes {
     pub paren_token: Paren,

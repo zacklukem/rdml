@@ -1,3 +1,133 @@
+//! An alternative templating macro for leptos with more consise syntax based on [`rdml`](https://docs.rs/rdml)
+//!
+//! # Examples
+//!
+//! ## Elements
+//!
+//! Elements are made up of the tag or component name, followed by attributes and children surrounded by braces.
+//!
+//! Attributes are optional, must be surrounded by parenthesis, and are separated by commas.
+//!
+//! ```ignore
+//! rdml! {
+//!     div(id="root", class="container") {
+//!         span { "Hello, world!" }
+//!         ButtonComponent(on:click=move || println!("Clicked!")) {}
+//!     }
+//! }
+//! ```
+//! ## Text node
+//!
+//! Quoted text will be interpreted as a text node
+//!
+//! ```ignore
+//! rdml! {
+//!     div { "Text here" }
+//! }
+//! ```
+//!
+//! ## Expressions
+//!
+//! Expressions can be any rust expression surrounded by parenthesis.
+//!
+//! ```ignore
+//! rdml! {
+//!     div { (if i > 1 { "Greater" } else { "Less" }) }
+//! }
+//! ```
+//!
+//! ## If blocks
+//!
+//! If blocks can conditionally render certain nodes.
+//!
+//! ```ignore
+//! rdml! {
+//!     if i > 1 {
+//!         span { "This is a span" }
+//!     } else {
+//!         div { "This is a div" }
+//!     }
+//! }
+//! ```
+//!
+//! By default, the if generates creates a normal rust if expression in a closure (i.e. `{move || if condition {} [...]}`),
+//! however the `#[show]` attribute can be applied to use the [`Show`](https://docs.rs/leptos/latest/leptos/control_flow/fn.Show.html)
+//! component instead. (See [control flow](https://book.leptos.dev/view/06_control_flow.html) in the leptos book for more deatails).
+//!
+//! ```ignore
+//! rdml! {
+//!     #[show]
+//!     if i > 1 {
+//!         span { "This is a span" }
+//!     } else {
+//!         div { "This is a div" }
+//!     }
+//! }
+//! ```
+//!
+//! ## For blocks
+//!
+//! For blocks can render a list of nodes
+//!
+//! ```ignore
+//! rdml! {
+//!     for i in 0..50 {
+//!         div { (i) }
+//!     }
+//! }
+//! ```
+//!
+//! By default, the for node collects the given iterable into a `Vec<_>`, however the [`For`](https://docs.rs/leptos/latest/leptos/control_flow/fn.For.html)
+//! component can be used instead by adding the `#[key([expr])]` attribute. (See [iteration](https://book.leptos.dev/view/04_iteration.html) in the leptos book).
+//!
+//! ```ignore
+//! rdml! {
+//!     #[key(item.clone())]
+//!     for item in items.get() {
+//!         div { (item) }
+//!     }
+//! }
+//! ```
+//!
+//! ## Match blocks
+//!
+//! You can also use match statements for control flow (this always generates a move closure with a rust match block)
+//!
+//! ```ignore
+//! rdml! {
+//!     match name {
+//!         Some("a") => div { "a" }
+//!         Some("b") => "b",
+//!         Some("c") => {
+//!             span { "c" }
+//!             button {}
+//!         }
+//!         None => (other_name.to_string()),
+//!     }
+//! }
+//! ```
+//!
+//! ## With attributes
+//!
+//! Most nodes and blocks can have the `#[with([stmt])]` attribute applied to enter a new scope with the given statment.
+//! This attribute can be applied multiple times.
+//!
+//! ```ignore
+//! rdml! {
+//!     #[with(let value = x + 1;)]
+//!     {
+//!         div {}
+//!         (value)
+//!     }
+//!     #[with(let ref = ref.clone();)]
+//!     #[with(let ref1 = ref.clone();)]
+//!     if condition {
+//!         div { (ref) (ref1) }
+//!     }
+//! }
+//! ```
+//!
+
 use proc_macro2::{Span, TokenStream};
 use quote::{ToTokens, TokenStreamExt, quote, quote_spanned};
 use rdml::{
@@ -140,7 +270,7 @@ fn generate_for_node(for_node: &ForNode, attrs: &[syn::Attribute]) -> TokenStrea
     let body = generate_block(&for_node.body);
 
     if let Some(key_attr) = key_attr {
-        let key: Expr = key_attr.parse_args().unwrap();
+        let key: Expr = key_attr.parse_args().unwrap(); // TODO: expose error
         quote_spanned! {for_token.span()=>
             <For
                 each=(move || { #expr })
@@ -204,7 +334,7 @@ fn generate_node(node: &Node) -> TokenStream {
         .filter(|attr| attr.path().get_ident().is_some_and(|id| id == "with"))
         .map(|attr| attr.parse_args::<Stmt>())
         .collect::<Result<Vec<_>, _>>()
-        .unwrap();
+        .unwrap(); // TODO: expose error
 
     if !with_attr.is_empty() {
         let span = node
@@ -212,6 +342,7 @@ fn generate_node(node: &Node) -> TokenStream {
             .iter()
             .filter(|attr| attr.path().get_ident().is_some_and(|id| id == "with"))
             .next()
+            // Ok because with_attr is non-empty
             .unwrap()
             .path()
             .span();
@@ -233,7 +364,7 @@ pub fn rdml(tokens: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
     let nodes = nodes.nodes.iter().map(generate_node);
 
-    quote! {
+    quote! {{
         #[allow(unused_variables)]
         #[allow(unused_parens)]
         #[allow(unused_braces)]
@@ -242,6 +373,6 @@ pub fn rdml(tokens: proc_macro::TokenStream) -> proc_macro::TokenStream {
                 #(#nodes)*
             }
         }
-    }
+    }}
     .into()
 }
