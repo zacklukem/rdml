@@ -4,7 +4,7 @@ use rdml::{
     Attribute, AttributeName, Block, Element, ElseNode, ExprNode, ForNode, IfNode, MatchNode,
     MatchNodeArm, Node, NodeType, Nodes,
 };
-use syn::{Expr, parse_macro_input};
+use syn::{Expr, Stmt, parse_macro_input};
 
 fn generate_attribute_name(attr_name: &AttributeName) -> TokenStream {
     match attr_name {
@@ -153,7 +153,7 @@ fn generate_match_node(node: &MatchNode) -> TokenStream {
 }
 
 fn generate_node(node: &Node) -> TokenStream {
-    match &node.node {
+    let node_tokens = match &node.node {
         NodeType::Element(element) => generate_element(element),
         NodeType::Text(lit_str) => lit_str.to_token_stream(),
         NodeType::Expr(ExprNode { expr, .. }) => quote! {{ #expr }},
@@ -161,6 +161,25 @@ fn generate_node(node: &Node) -> TokenStream {
         NodeType::For(for_node) => generate_for_node(for_node, &node.attrs),
         NodeType::Match(match_node) => generate_match_node(match_node),
         NodeType::Block(block) => generate_block(block),
+    };
+
+    let with_attr = node
+        .attrs
+        .iter()
+        .filter(|attr| attr.path().get_ident().is_some_and(|id| id == "with"))
+        .map(|attr| attr.parse_args::<Stmt>())
+        .collect::<Result<Vec<_>, _>>()
+        .unwrap();
+
+    if !with_attr.is_empty() {
+        quote! {
+            {{
+                #(#with_attr)*
+                view! { #node_tokens }
+            }}
+        }
+    } else {
+        node_tokens
     }
 }
 

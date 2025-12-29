@@ -27,7 +27,8 @@ fn App() -> impl IntoView {
             button { "Add Item" }
         }
 
-        match value.read().len() {
+        #[with(let length = value.read().len();)]
+        match length {
             0 => "Input is required",
             0..=10 => {},
             11.. => "That input is too long",
