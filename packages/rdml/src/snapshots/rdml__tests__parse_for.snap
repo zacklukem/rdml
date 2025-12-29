@@ -1,0 +1,54 @@
+---
+source: packages/rdml/src/lib.rs
+expression: result
+---
+Nodes {
+    nodes: [
+        Node {
+            attrs: [],
+            node: For(
+                ForNode {
+                    for_token: For,
+                    pat: Pat::Ident {
+                        attrs: [],
+                        by_ref: None,
+                        mutability: None,
+                        ident: Ident(
+                            pattern,
+                        ),
+                        subpat: None,
+                    },
+                    in_token: In,
+                    expr: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        expr,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                    body: Block {
+                        brace_token: Brace,
+                        nodes: [
+                            Node {
+                                attrs: [],
+                                node: Text(
+                                    LitStr {
+                                        token: "for body",
+                                    },
+                                ),
+                            },
+                        ],
+                    },
+                },
+            ),
+        },
+    ],
+}

@@ -3,12 +3,14 @@ mod helpers;
 mod attribute;
 mod block;
 mod element;
+mod for_node;
 mod if_node;
 mod node;
 
 pub use attribute::*;
 pub use block::*;
 pub use element::*;
+pub use for_node::*;
 pub use if_node::*;
 pub use node::*;
 
@@ -74,6 +76,15 @@ mod tests {
             "hello"
             #[attribute]
             {expr}
+        }
+    }
+
+    #[test]
+    fn test_parse_for() {
+        snapshot_test! {
+            for pattern in expr {
+                "for body"
+            }
         }
     }
 

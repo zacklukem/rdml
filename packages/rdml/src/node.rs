@@ -4,7 +4,7 @@ use syn::{
     token::Brace,
 };
 
-use crate::{Element, IfNode};
+use crate::{Element, ForNode, IfNode};
 
 #[derive(Debug, PartialEq, Hash)]
 pub struct ExprNode {
@@ -28,12 +28,15 @@ pub enum NodeType {
     Text(LitStr),
     Expr(ExprNode),
     If(IfNode),
+    For(ForNode),
 }
 
 impl Parse for NodeType {
     fn parse(input: ParseStream) -> Result<Self> {
         if input.peek(Token![if]) {
             Ok(Self::If(input.parse()?))
+        } else if input.peek(Token![for]) {
+            Ok(Self::For(input.parse()?))
         } else if input.peek(LitStr) {
             Ok(Self::Text(input.parse()?))
         } else if input.peek(Brace) {
