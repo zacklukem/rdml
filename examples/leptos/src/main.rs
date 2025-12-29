@@ -9,9 +9,13 @@ fn App() -> impl IntoView {
     rdml! {
         ol {
             #[key(item.clone())]
-            for item in items.get() {
-                li {
-                    (item)
+            for (i, item) in items.get().into_iter().enumerate() {
+                #[with(let item1 = item.clone();)]
+                #[show]
+                if i % 2 == 0 {
+                    li { (item.clone()) }
+                } else {
+                    li { (item1.clone()) }
                 }
             }
         }

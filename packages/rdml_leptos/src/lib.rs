@@ -49,54 +49,81 @@ fn generate_block(block: &Block) -> TokenStream {
     quote! { #(#nodes)* }
 }
 
-fn generate_if_node(if_node: &IfNode) -> TokenStream {
-    let if_token = &if_node.if_token;
-    let cond = &if_node.cond;
-    let then_branch = generate_block(&if_node.then_branch);
-    let mut result = quote! {
-        #if_token #cond {
-            view! { #then_branch }.into_any()
-        }
-    };
-    let mut else_branch = if_node.else_branch.as_ref();
-
-    let mut had_else = false;
-
-    while let Some((else_token, else_node)) = else_branch {
-        match else_node {
-            ElseNode::If(if_node) => {
-                let if_token = &if_node.if_token;
-                let cond = &if_node.cond;
-                let then_branch = generate_block(&if_node.then_branch);
-                result.append_all(quote! {
-                    #else_token #if_token #cond {
-                        view! { #then_branch }.into_any()
-                    }
-                });
-                else_branch = if_node.else_branch.as_ref();
-            }
-            ElseNode::Else(block) => {
-                let block = generate_block(&block);
-                result.append_all(quote! {
-                    #else_token {
-                        view! { #block }.into_any()
-                    }
-                });
-                had_else = true;
-                break;
+fn generate_if_node(if_node: &IfNode, attrs: &[syn::Attribute]) -> TokenStream {
+    if attrs
+        .iter()
+        .any(|attr| attr.path().get_ident().is_some_and(|id| id == "show"))
+    {
+        fn generate_rec(node: &IfNode) -> TokenStream {
+            let cond = &node.cond;
+            let fallback = node.else_branch.as_ref().map(|(_, else_branch)| {
+                let else_branch = match else_branch {
+                    ElseNode::If(if_node) => generate_rec(if_node),
+                    ElseNode::Else(block) => generate_block(block),
+                };
+                quote! {fallback=(move || view! { #else_branch })}
+            });
+            let then_branch = generate_block(&node.then_branch);
+            quote! {
+                <Show
+                    when=(move || #cond)
+                    #fallback
+                >
+                    #then_branch
+                </Show>
             }
         }
-    }
 
-    if !had_else {
-        result.append_all(quote! {
-            else {
-                view! { }.into_any()
+        generate_rec(if_node)
+    } else {
+        let if_token = &if_node.if_token;
+        let cond = &if_node.cond;
+        let then_branch = generate_block(&if_node.then_branch);
+        let mut result = quote! {
+            #if_token #cond {
+                view! { #then_branch }.into_any()
             }
-        });
-    }
+        };
+        let mut else_branch = if_node.else_branch.as_ref();
 
-    quote! { {move || #result} }
+        let mut had_else = false;
+
+        while let Some((else_token, else_node)) = else_branch {
+            match else_node {
+                ElseNode::If(if_node) => {
+                    let if_token = &if_node.if_token;
+                    let cond = &if_node.cond;
+                    let then_branch = generate_block(&if_node.then_branch);
+                    result.append_all(quote! {
+                        #else_token #if_token #cond {
+                            view! { #then_branch }.into_any()
+                        }
+                    });
+                    else_branch = if_node.else_branch.as_ref();
+                }
+                ElseNode::Else(block) => {
+                    let block = generate_block(&block);
+                    result.append_all(quote! {
+                        #else_token {
+                            view! { #block }.into_any()
+                        }
+                    });
+                    had_else = true;
+                    break;
+                }
+            }
+        }
+
+        if !had_else {
+            result.append_all(quote! {
+                else {
+                    view! { }.into_any()
+                }
+            });
+        }
+
+        quote! { {move || #result} }
+    }
 }
 
 fn generate_for_node(for_node: &ForNode, attrs: &[syn::Attribute]) -> TokenStream {
@@ -157,7 +184,7 @@ fn generate_node(node: &Node) -> TokenStream {
         NodeType::Element(element) => generate_element(element),
         NodeType::Text(lit_str) => lit_str.to_token_stream(),
         NodeType::Expr(ExprNode { expr, .. }) => quote! {{ #expr }},
-        NodeType::If(if_node) => generate_if_node(if_node),
+        NodeType::If(if_node) => generate_if_node(if_node, &node.attrs),
         NodeType::For(for_node) => generate_for_node(for_node, &node.attrs),
         NodeType::Match(match_node) => generate_match_node(match_node),
         NodeType::Block(block) => generate_block(block),
@@ -190,8 +217,11 @@ pub fn rdml(tokens: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let nodes = nodes.nodes.iter().map(generate_node);
 
     quote! {
-        ::leptos::prelude::view! {
-            #(#nodes)*
+        #[allow(unused_variables)]
+        {
+            ::leptos::prelude::view! {
+                #(#nodes)*
+            }
         }
     }
     .into()
