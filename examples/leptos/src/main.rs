@@ -11,10 +11,11 @@ fn App() -> impl IntoView {
             #[key(item.clone())]
             for item in items.get() {
                 li {
-                    {item}
+                    (item)
                 }
             }
         }
+
         form(
             on:submit=move |e| {
                 e.prevent_default();
@@ -25,8 +26,11 @@ fn App() -> impl IntoView {
             input(bind:value=value) {}
             button { "Add Item" }
         }
-        if value.read().len() > 10 {
-            "That input is too long"
+
+        match value.read().len() {
+            0 => "Input is required",
+            0..=10 => {},
+            11.. => "That input is too long",
         }
     }
 }

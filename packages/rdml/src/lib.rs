@@ -5,6 +5,7 @@ mod block;
 mod element;
 mod for_node;
 mod if_node;
+mod match_node;
 mod node;
 
 pub use attribute::*;
@@ -12,6 +13,7 @@ pub use block::*;
 pub use element::*;
 pub use for_node::*;
 pub use if_node::*;
+pub use match_node::*;
 pub use node::*;
 
 #[cfg(test)]
@@ -41,6 +43,20 @@ mod tests {
     }
 
     #[test]
+    fn test_match_node() {
+        snapshot_test! {
+            match expr {
+                Some(X) | Some(Y) => {
+                    div {}
+                }
+                Some(A) | Some(B) if true => "1",
+                Some(C) => "2",
+                None => span {},
+            }
+        }
+    }
+
+    #[test]
     fn test_parse_attributes() {
         snapshot_test! {
             div(
@@ -61,7 +77,7 @@ mod tests {
             div {
                 "stuff inside of elements"
             }
-            {expr(here)}
+            (expr(here))
         }
     }
 
@@ -75,7 +91,7 @@ mod tests {
             #[attribute]
             "hello"
             #[attribute]
-            {expr}
+            (expr)
         }
     }
 

@@ -1,8 +1,8 @@
 use proc_macro2::TokenStream;
 use quote::{ToTokens, TokenStreamExt, quote};
 use rdml::{
-    Attribute, AttributeName, Block, Element, ElseNode, ExprNode, ForNode, IfNode, Node, NodeType,
-    Nodes,
+    Attribute, AttributeName, Block, Element, ElseNode, ExprNode, ForNode, IfNode, MatchNode,
+    MatchNodeArm, Node, NodeType, Nodes,
 };
 use syn::{Expr, parse_macro_input};
 
@@ -96,7 +96,7 @@ fn generate_if_node(if_node: &IfNode) -> TokenStream {
         });
     }
 
-    quote! { {move ||  #result} }
+    quote! { {move || #result} }
 }
 
 fn generate_for_node(for_node: &ForNode, attrs: &[syn::Attribute]) -> TokenStream {
@@ -128,6 +128,30 @@ fn generate_for_node(for_node: &ForNode, attrs: &[syn::Attribute]) -> TokenStrea
     }
 }
 
+fn generate_match_node_arm(arm: &MatchNodeArm) -> TokenStream {
+    let pat = &arm.pat;
+    let guard = arm
+        .guard
+        .as_ref()
+        .map(|(if_token, expr)| quote! { #if_token #expr });
+    let fat_arrow_token = &arm.fat_arrow_token;
+    let body = generate_node(&arm.body);
+    quote! {
+        #pat #guard #fat_arrow_token view! { #body }.into_any(),
+    }
+}
+
+fn generate_match_node(node: &MatchNode) -> TokenStream {
+    let match_token = &node.match_token;
+    let expr = &node.expr;
+    let arms = node.arms.iter().map(generate_match_node_arm);
+    quote! {
+        {move || #match_token #expr {
+            #(#arms)*
+        }}
+    }
+}
+
 fn generate_node(node: &Node) -> TokenStream {
     match &node.node {
         NodeType::Element(element) => generate_element(element),
@@ -135,6 +159,8 @@ fn generate_node(node: &Node) -> TokenStream {
         NodeType::Expr(ExprNode { expr, .. }) => quote! {{ #expr }},
         NodeType::If(if_node) => generate_if_node(if_node),
         NodeType::For(for_node) => generate_for_node(for_node, &node.attrs),
+        NodeType::Match(match_node) => generate_match_node(match_node),
+        NodeType::Block(block) => generate_block(block),
     }
 }
 

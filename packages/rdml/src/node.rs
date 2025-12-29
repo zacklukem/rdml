@@ -1,14 +1,14 @@
 use syn::{
-    Attribute, Expr, LitStr, Result, Token, braced,
+    Attribute, Expr, LitStr, Result, Token, parenthesized,
     parse::{Parse, ParseStream},
-    token::Brace,
+    token::{Brace, Paren},
 };
 
-use crate::{Element, ForNode, IfNode};
+use crate::{Block, Element, ForNode, IfNode, MatchNode};
 
 #[derive(Debug, PartialEq, Hash)]
 pub struct ExprNode {
-    pub brace_token: Brace,
+    pub paren_token: Paren,
     pub expr: Expr,
 }
 
@@ -16,7 +16,7 @@ impl Parse for ExprNode {
     fn parse(input: ParseStream) -> Result<Self> {
         let content;
         Ok(Self {
-            brace_token: braced!(content in input),
+            paren_token: parenthesized!(content in input),
             expr: content.parse()?,
         })
     }
@@ -29,6 +29,8 @@ pub enum NodeType {
     Expr(ExprNode),
     If(IfNode),
     For(ForNode),
+    Match(MatchNode),
+    Block(Block),
 }
 
 impl Parse for NodeType {
@@ -37,9 +39,13 @@ impl Parse for NodeType {
             Ok(Self::If(input.parse()?))
         } else if input.peek(Token![for]) {
             Ok(Self::For(input.parse()?))
+        } else if input.peek(Token![match]) {
+            Ok(Self::Match(input.parse()?))
         } else if input.peek(LitStr) {
             Ok(Self::Text(input.parse()?))
         } else if input.peek(Brace) {
+            Ok(Self::Block(input.parse()?))
+        } else if input.peek(Paren) {
             Ok(Self::Expr(input.parse()?))
         } else {
             Ok(Self::Element(input.parse()?))

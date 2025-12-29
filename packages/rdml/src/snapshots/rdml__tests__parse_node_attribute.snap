@@ -144,7 +144,7 @@ Nodes {
             ],
             node: Expr(
                 ExprNode {
-                    brace_token: Brace,
+                    paren_token: Paren,
                     expr: Expr::Path {
                         attrs: [],
                         qself: None,

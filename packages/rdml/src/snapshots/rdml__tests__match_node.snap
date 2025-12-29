@@ -1,0 +1,300 @@
+---
+source: packages/rdml/src/lib.rs
+expression: result
+---
+Nodes {
+    nodes: [
+        Node {
+            attrs: [],
+            node: Match(
+                MatchNode {
+                    match_token: Match,
+                    expr: Expr::Path {
+                        attrs: [],
+                        qself: None,
+                        path: Path {
+                            leading_colon: None,
+                            segments: [
+                                PathSegment {
+                                    ident: Ident(
+                                        expr,
+                                    ),
+                                    arguments: PathArguments::None,
+                                },
+                            ],
+                        },
+                    },
+                    brace_token: Brace,
+                    arms: [
+                        MatchNodeArm {
+                            pat: Pat::Or {
+                                attrs: [],
+                                leading_vert: None,
+                                cases: [
+                                    Pat::TupleStruct {
+                                        attrs: [],
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        Some,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                        paren_token: Paren,
+                                        elems: [
+                                            Pat::Ident {
+                                                attrs: [],
+                                                by_ref: None,
+                                                mutability: None,
+                                                ident: Ident(
+                                                    X,
+                                                ),
+                                                subpat: None,
+                                            },
+                                        ],
+                                    },
+                                    Or,
+                                    Pat::TupleStruct {
+                                        attrs: [],
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        Some,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                        paren_token: Paren,
+                                        elems: [
+                                            Pat::Ident {
+                                                attrs: [],
+                                                by_ref: None,
+                                                mutability: None,
+                                                ident: Ident(
+                                                    Y,
+                                                ),
+                                                subpat: None,
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            guard: None,
+                            fat_arrow_token: FatArrow,
+                            body: Node {
+                                attrs: [],
+                                node: Block(
+                                    Block {
+                                        brace_token: Brace,
+                                        nodes: [
+                                            Node {
+                                                attrs: [],
+                                                node: Element(
+                                                    Element {
+                                                        path: Path {
+                                                            leading_colon: None,
+                                                            segments: [
+                                                                PathSegment {
+                                                                    ident: Ident(
+                                                                        div,
+                                                                    ),
+                                                                    arguments: PathArguments::None,
+                                                                },
+                                                            ],
+                                                        },
+                                                        attributes: None,
+                                                        children: Block {
+                                                            brace_token: Brace,
+                                                            nodes: [],
+                                                        },
+                                                    },
+                                                ),
+                                            },
+                                        ],
+                                    },
+                                ),
+                            },
+                            comma: None,
+                        },
+                        MatchNodeArm {
+                            pat: Pat::Or {
+                                attrs: [],
+                                leading_vert: None,
+                                cases: [
+                                    Pat::TupleStruct {
+                                        attrs: [],
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        Some,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                        paren_token: Paren,
+                                        elems: [
+                                            Pat::Ident {
+                                                attrs: [],
+                                                by_ref: None,
+                                                mutability: None,
+                                                ident: Ident(
+                                                    A,
+                                                ),
+                                                subpat: None,
+                                            },
+                                        ],
+                                    },
+                                    Or,
+                                    Pat::TupleStruct {
+                                        attrs: [],
+                                        qself: None,
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        Some,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                        paren_token: Paren,
+                                        elems: [
+                                            Pat::Ident {
+                                                attrs: [],
+                                                by_ref: None,
+                                                mutability: None,
+                                                ident: Ident(
+                                                    B,
+                                                ),
+                                                subpat: None,
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            guard: Some(
+                                (
+                                    If,
+                                    Expr::Lit {
+                                        attrs: [],
+                                        lit: Lit::Bool {
+                                            value: true,
+                                        },
+                                    },
+                                ),
+                            ),
+                            fat_arrow_token: FatArrow,
+                            body: Node {
+                                attrs: [],
+                                node: Text(
+                                    LitStr {
+                                        token: "1",
+                                    },
+                                ),
+                            },
+                            comma: Some(
+                                Comma,
+                            ),
+                        },
+                        MatchNodeArm {
+                            pat: Pat::TupleStruct {
+                                attrs: [],
+                                qself: None,
+                                path: Path {
+                                    leading_colon: None,
+                                    segments: [
+                                        PathSegment {
+                                            ident: Ident(
+                                                Some,
+                                            ),
+                                            arguments: PathArguments::None,
+                                        },
+                                    ],
+                                },
+                                paren_token: Paren,
+                                elems: [
+                                    Pat::Ident {
+                                        attrs: [],
+                                        by_ref: None,
+                                        mutability: None,
+                                        ident: Ident(
+                                            C,
+                                        ),
+                                        subpat: None,
+                                    },
+                                ],
+                            },
+                            guard: None,
+                            fat_arrow_token: FatArrow,
+                            body: Node {
+                                attrs: [],
+                                node: Text(
+                                    LitStr {
+                                        token: "2",
+                                    },
+                                ),
+                            },
+                            comma: Some(
+                                Comma,
+                            ),
+                        },
+                        MatchNodeArm {
+                            pat: Pat::Ident {
+                                attrs: [],
+                                by_ref: None,
+                                mutability: None,
+                                ident: Ident(
+                                    None,
+                                ),
+                                subpat: None,
+                            },
+                            guard: None,
+                            fat_arrow_token: FatArrow,
+                            body: Node {
+                                attrs: [],
+                                node: Element(
+                                    Element {
+                                        path: Path {
+                                            leading_colon: None,
+                                            segments: [
+                                                PathSegment {
+                                                    ident: Ident(
+                                                        span,
+                                                    ),
+                                                    arguments: PathArguments::None,
+                                                },
+                                            ],
+                                        },
+                                        attributes: None,
+                                        children: Block {
+                                            brace_token: Brace,
+                                            nodes: [],
+                                        },
+                                    },
+                                ),
+                            },
+                            comma: Some(
+                                Comma,
+                            ),
+                        },
+                    ],
+                },
+            ),
+        },
+    ],
+}

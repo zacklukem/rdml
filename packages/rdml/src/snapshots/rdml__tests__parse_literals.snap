@@ -48,7 +48,7 @@ Nodes {
             attrs: [],
             node: Expr(
                 ExprNode {
-                    brace_token: Brace,
+                    paren_token: Paren,
                     expr: Expr::Call {
                         attrs: [],
                         func: Expr::Path {
