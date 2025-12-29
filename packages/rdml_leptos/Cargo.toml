@@ -2,6 +2,11 @@
 name = "rdml_leptos"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "An alternative templating macro for leptos"
+repository = "https://github.com/zacklukem/rdml"
+homepage = "https://github.com/zacklukem/rdml"
+keywords = ["html", "macro", "leptos"]
 
 [lib]
 proc-macro = true

@@ -2,6 +2,11 @@
 name = "rdml"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "A generic templating language for rust ui frameworks"
+repository = "https://github.com/zacklukem/rdml"
+homepage = "https://github.com/zacklukem/rdml"
+keywords = ["html", "macro"]
 
 [dependencies]
 proc-macro2 = { workspace = true }
