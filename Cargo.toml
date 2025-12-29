@@ -1,3 +1,9 @@
 [workspace]
 resolver = "3"
-members = ["packages/*"]
+members = ["examples/*", "packages/*"]
+
+[workspace.dependencies]
+rdml = { path = "./packages/rdml" }
+rdml_leptos = { path = "./packages/rdml_leptos" }
+syn = { version = "2.0.111", features = ["extra-traits", "full"] }
+proc-macro2 = "1.0.104"

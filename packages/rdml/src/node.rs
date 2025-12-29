@@ -8,8 +8,8 @@ use crate::{Element, ForNode, IfNode};
 
 #[derive(Debug, PartialEq, Hash)]
 pub struct ExprNode {
-    brace_token: Brace,
-    expr: Expr,
+    pub brace_token: Brace,
+    pub expr: Expr,
 }
 
 impl Parse for ExprNode {
@@ -49,8 +49,8 @@ impl Parse for NodeType {
 
 #[derive(Debug, PartialEq, Hash)]
 pub struct Node {
-    attrs: Vec<Attribute>,
-    node: NodeType,
+    pub attrs: Vec<Attribute>,
+    pub node: NodeType,
 }
 
 impl Parse for Node {
