@@ -16,9 +16,9 @@ Nodes {
                             leading_colon: None,
                             segments: [
                                 PathSegment {
-                                    ident: Ident(
-                                        condition,
-                                    ),
+                                    ident: Ident {
+                                        sym: condition,
+                                    },
                                     arguments: PathArguments::None,
                                 },
                             ],
@@ -55,9 +55,9 @@ Nodes {
                                 leading_colon: None,
                                 segments: [
                                     PathSegment {
-                                        ident: Ident(
-                                            condition,
-                                        ),
+                                        ident: Ident {
+                                            sym: condition,
+                                        },
                                         arguments: PathArguments::None,
                                     },
                                 ],
@@ -73,9 +73,9 @@ Nodes {
                                 leading_colon: None,
                                 segments: [
                                     PathSegment {
-                                        ident: Ident(
-                                            else_block,
-                                        ),
+                                        ident: Ident {
+                                            sym: else_block,
+                                        },
                                         arguments: PathArguments::None,
                                     },
                                 ],
@@ -132,9 +132,9 @@ Nodes {
                                 leading_colon: None,
                                 segments: [
                                     PathSegment {
-                                        ident: Ident(
-                                            condition,
-                                        ),
+                                        ident: Ident {
+                                            sym: condition,
+                                        },
                                         arguments: PathArguments::None,
                                     },
                                 ],
@@ -150,9 +150,9 @@ Nodes {
                                 leading_colon: None,
                                 segments: [
                                     PathSegment {
-                                        ident: Ident(
-                                            else_block,
-                                        ),
+                                        ident: Ident {
+                                            sym: else_block,
+                                        },
                                         arguments: PathArguments::None,
                                     },
                                 ],
@@ -187,9 +187,9 @@ Nodes {
                                                 leading_colon: None,
                                                 segments: [
                                                     PathSegment {
-                                                        ident: Ident(
-                                                            condition,
-                                                        ),
+                                                        ident: Ident {
+                                                            sym: condition,
+                                                        },
                                                         arguments: PathArguments::None,
                                                     },
                                                 ],
@@ -205,9 +205,9 @@ Nodes {
                                                 leading_colon: None,
                                                 segments: [
                                                     PathSegment {
-                                                        ident: Ident(
-                                                            else_if_block,
-                                                        ),
+                                                        ident: Ident {
+                                                            sym: else_if_block,
+                                                        },
                                                         arguments: PathArguments::None,
                                                     },
                                                 ],

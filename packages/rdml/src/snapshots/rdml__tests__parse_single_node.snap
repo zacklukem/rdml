@@ -12,9 +12,9 @@ Nodes {
                         leading_colon: None,
                         segments: [
                             PathSegment {
-                                ident: Ident(
-                                    div,
-                                ),
+                                ident: Ident {
+                                    sym: div,
+                                },
                                 arguments: PathArguments::None,
                             },
                         ],
@@ -37,30 +37,30 @@ Nodes {
                         ),
                         segments: [
                             PathSegment {
-                                ident: Ident(
-                                    full,
-                                ),
+                                ident: Ident {
+                                    sym: full,
+                                },
                                 arguments: PathArguments::None,
                             },
                             PathSep,
                             PathSegment {
-                                ident: Ident(
-                                    path,
-                                ),
+                                ident: Ident {
+                                    sym: path,
+                                },
                                 arguments: PathArguments::None,
                             },
                             PathSep,
                             PathSegment {
-                                ident: Ident(
-                                    to,
-                                ),
+                                ident: Ident {
+                                    sym: to,
+                                },
                                 arguments: PathArguments::None,
                             },
                             PathSep,
                             PathSegment {
-                                ident: Ident(
-                                    div,
-                                ),
+                                ident: Ident {
+                                    sym: div,
+                                },
                                 arguments: PathArguments::None,
                             },
                         ],
@@ -81,9 +81,9 @@ Nodes {
                         leading_colon: None,
                         segments: [
                             PathSegment {
-                                ident: Ident(
-                                    Component,
-                                ),
+                                ident: Ident {
+                                    sym: Component,
+                                },
                                 arguments: PathArguments::AngleBracketed {
                                     colon2_token: Some(
                                         PathSep,
@@ -97,9 +97,9 @@ Nodes {
                                                     leading_colon: None,
                                                     segments: [
                                                         PathSegment {
-                                                            ident: Ident(
-                                                                WithGenerics,
-                                                            ),
+                                                            ident: Ident {
+                                                                sym: WithGenerics,
+                                                            },
                                                             arguments: PathArguments::None,
                                                         },
                                                     ],

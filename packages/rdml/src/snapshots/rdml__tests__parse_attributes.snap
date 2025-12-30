@@ -12,9 +12,9 @@ Nodes {
                         leading_colon: None,
                         segments: [
                             PathSegment {
-                                ident: Ident(
-                                    div,
-                                ),
+                                ident: Ident {
+                                    sym: div,
+                                },
                                 arguments: PathArguments::None,
                             },
                         ],
@@ -29,9 +29,9 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        single,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: single,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -64,17 +64,17 @@ Nodes {
                                 Attribute {
                                     name: Directive(
                                         AttributeNameDirective {
-                                            directive: Ident(
-                                                dir,
-                                            ),
+                                            directive: Ident {
+                                                sym: dir,
+                                            },
                                             colon_token: Colon,
                                             path: Path {
                                                 leading_colon: None,
                                                 segments: [
                                                     PathSegment {
-                                                        ident: Ident(
-                                                            ective,
-                                                        ),
+                                                        ident: Ident {
+                                                            sym: ective,
+                                                        },
                                                         arguments: PathArguments::None,
                                                     },
                                                 ],
@@ -98,23 +98,23 @@ Nodes {
                                             ),
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        rdml,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: rdml,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                                 PathSep,
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        attribute,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: attribute,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                                 PathSep,
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        Attribute,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: Attribute,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -135,23 +135,23 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        rdml,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: rdml,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                                 PathSep,
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        attribute,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: attribute,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                                 PathSep,
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        Attribute,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: Attribute,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -169,31 +169,31 @@ Nodes {
                                 Attribute {
                                     name: Directive(
                                         AttributeNameDirective {
-                                            directive: Ident(
-                                                directive,
-                                            ),
+                                            directive: Ident {
+                                                sym: directive,
+                                            },
                                             colon_token: Colon,
                                             path: Path {
                                                 leading_colon: None,
                                                 segments: [
                                                     PathSegment {
-                                                        ident: Ident(
-                                                            rdml,
-                                                        ),
+                                                        ident: Ident {
+                                                            sym: rdml,
+                                                        },
                                                         arguments: PathArguments::None,
                                                     },
                                                     PathSep,
                                                     PathSegment {
-                                                        ident: Ident(
-                                                            attribute,
-                                                        ),
+                                                        ident: Ident {
+                                                            sym: attribute,
+                                                        },
                                                         arguments: PathArguments::None,
                                                     },
                                                     PathSep,
                                                     PathSegment {
-                                                        ident: Ident(
-                                                            Attribute,
-                                                        ),
+                                                        ident: Ident {
+                                                            sym: Attribute,
+                                                        },
                                                         arguments: PathArguments::None,
                                                     },
                                                 ],

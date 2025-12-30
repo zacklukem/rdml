@@ -20,9 +20,9 @@ Nodes {
                         leading_colon: None,
                         segments: [
                             PathSegment {
-                                ident: Ident(
-                                    div,
-                                ),
+                                ident: Ident {
+                                    sym: div,
+                                },
                                 arguments: PathArguments::None,
                             },
                         ],
@@ -58,9 +58,9 @@ Nodes {
                                 leading_colon: None,
                                 segments: [
                                     PathSegment {
-                                        ident: Ident(
-                                            expr,
-                                        ),
+                                        ident: Ident {
+                                            sym: expr,
+                                        },
                                         arguments: PathArguments::None,
                                     },
                                 ],
@@ -75,9 +75,9 @@ Nodes {
                                     leading_colon: None,
                                     segments: [
                                         PathSegment {
-                                            ident: Ident(
-                                                here,
-                                            ),
+                                            ident: Ident {
+                                                sym: here,
+                                            },
                                             arguments: PathArguments::None,
                                         },
                                     ],

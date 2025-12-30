@@ -16,9 +16,9 @@ Nodes {
                             leading_colon: None,
                             segments: [
                                 PathSegment {
-                                    ident: Ident(
-                                        expr,
-                                    ),
+                                    ident: Ident {
+                                        sym: expr,
+                                    },
                                     arguments: PathArguments::None,
                                 },
                             ],
@@ -38,9 +38,9 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        Some,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: Some,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -51,9 +51,9 @@ Nodes {
                                                 attrs: [],
                                                 by_ref: None,
                                                 mutability: None,
-                                                ident: Ident(
-                                                    X,
-                                                ),
+                                                ident: Ident {
+                                                    sym: X,
+                                                },
                                                 subpat: None,
                                             },
                                         ],
@@ -66,9 +66,9 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        Some,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: Some,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -79,9 +79,9 @@ Nodes {
                                                 attrs: [],
                                                 by_ref: None,
                                                 mutability: None,
-                                                ident: Ident(
-                                                    Y,
-                                                ),
+                                                ident: Ident {
+                                                    sym: Y,
+                                                },
                                                 subpat: None,
                                             },
                                         ],
@@ -104,9 +104,9 @@ Nodes {
                                                             leading_colon: None,
                                                             segments: [
                                                                 PathSegment {
-                                                                    ident: Ident(
-                                                                        div,
-                                                                    ),
+                                                                    ident: Ident {
+                                                                        sym: div,
+                                                                    },
                                                                     arguments: PathArguments::None,
                                                                 },
                                                             ],
@@ -137,9 +137,9 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        Some,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: Some,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -150,9 +150,9 @@ Nodes {
                                                 attrs: [],
                                                 by_ref: None,
                                                 mutability: None,
-                                                ident: Ident(
-                                                    A,
-                                                ),
+                                                ident: Ident {
+                                                    sym: A,
+                                                },
                                                 subpat: None,
                                             },
                                         ],
@@ -165,9 +165,9 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        Some,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: Some,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],
@@ -178,9 +178,9 @@ Nodes {
                                                 attrs: [],
                                                 by_ref: None,
                                                 mutability: None,
-                                                ident: Ident(
-                                                    B,
-                                                ),
+                                                ident: Ident {
+                                                    sym: B,
+                                                },
                                                 subpat: None,
                                             },
                                         ],
@@ -219,9 +219,9 @@ Nodes {
                                     leading_colon: None,
                                     segments: [
                                         PathSegment {
-                                            ident: Ident(
-                                                Some,
-                                            ),
+                                            ident: Ident {
+                                                sym: Some,
+                                            },
                                             arguments: PathArguments::None,
                                         },
                                     ],
@@ -232,9 +232,9 @@ Nodes {
                                         attrs: [],
                                         by_ref: None,
                                         mutability: None,
-                                        ident: Ident(
-                                            C,
-                                        ),
+                                        ident: Ident {
+                                            sym: C,
+                                        },
                                         subpat: None,
                                     },
                                 ],
@@ -258,9 +258,9 @@ Nodes {
                                 attrs: [],
                                 by_ref: None,
                                 mutability: None,
-                                ident: Ident(
-                                    None,
-                                ),
+                                ident: Ident {
+                                    sym: None,
+                                },
                                 subpat: None,
                             },
                             guard: None,
@@ -273,9 +273,9 @@ Nodes {
                                             leading_colon: None,
                                             segments: [
                                                 PathSegment {
-                                                    ident: Ident(
-                                                        span,
-                                                    ),
+                                                    ident: Ident {
+                                                        sym: span,
+                                                    },
                                                     arguments: PathArguments::None,
                                                 },
                                             ],

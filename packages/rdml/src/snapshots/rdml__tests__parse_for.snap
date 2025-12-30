@@ -13,9 +13,9 @@ Nodes {
                         attrs: [],
                         by_ref: None,
                         mutability: None,
-                        ident: Ident(
-                            pattern,
-                        ),
+                        ident: Ident {
+                            sym: pattern,
+                        },
                         subpat: None,
                     },
                     in_token: In,
@@ -26,9 +26,9 @@ Nodes {
                             leading_colon: None,
                             segments: [
                                 PathSegment {
-                                    ident: Ident(
-                                        expr,
-                                    ),
+                                    ident: Ident {
+                                        sym: expr,
+                                    },
                                     arguments: PathArguments::None,
                                 },
                             ],
