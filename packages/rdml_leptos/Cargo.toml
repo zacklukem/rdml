@@ -16,3 +16,6 @@ proc-macro2 = { workspace = true }
 quote = "1.0.42"
 rdml = { workspace = true }
 syn = { workspace = true }
+
+[dev-dependencies]
+leptos = "0.8.15"

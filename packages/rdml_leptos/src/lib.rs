@@ -8,39 +8,58 @@
 //!
 //! Attributes are optional, must be surrounded by parenthesis, and are separated by commas.
 //!
-//! ```ignore
+//! ```
+//! use rdml_leptos::rdml;
+//! use leptos::prelude::*;
+//!
+//! #[component]
+//! fn ButtonComponent() -> impl IntoView { rdml! {} }
+//!
 //! rdml! {
 //!     div(id="root", class="container") {
 //!         span { "Hello, world!" }
-//!         ButtonComponent(on:click=move || println!("Clicked!")) {}
+//!         ButtonComponent(on:click=move |_| println!("Clicked!")) {}
 //!     }
 //! }
+//! # ;
 //! ```
 //! ## Text node
 //!
 //! Quoted text will be interpreted as a text node
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
 //! rdml! {
 //!     div { "Text here" }
 //! }
+//! # ;
 //! ```
 //!
 //! ## Expressions
 //!
 //! Expressions can be any rust expression surrounded by parenthesis.
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
+//! let i = 5;
+//!
 //! rdml! {
 //!     div { (if i > 1 { "Greater" } else { "Less" }) }
 //! }
+//! # ;
 //! ```
 //!
 //! ## If blocks
 //!
 //! If blocks can conditionally render certain nodes.
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
+//! let i = 5;
+//!
 //! rdml! {
 //!     if i > 1 {
 //!         span { "This is a span" }
@@ -48,13 +67,18 @@
 //!         div { "This is a div" }
 //!     }
 //! }
+//! # ;
 //! ```
 //!
 //! By default, the if generates creates a normal rust if expression in a closure (i.e. `{move || if condition {} [...]}`),
 //! however the `#[show]` attribute can be applied to use the [`Show`](https://docs.rs/leptos/latest/leptos/control_flow/fn.Show.html)
 //! component instead. (See [control flow](https://book.leptos.dev/view/06_control_flow.html) in the leptos book for more deatails).
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
+//! let i = 5;
+//!
 //! rdml! {
 //!     #[show]
 //!     if i > 1 {
@@ -63,37 +87,53 @@
 //!         div { "This is a div" }
 //!     }
 //! }
+//! # ;
 //! ```
 //!
 //! ## For blocks
 //!
 //! For blocks can render a list of nodes
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
 //! rdml! {
 //!     for i in 0..50 {
 //!         div { (i) }
 //!     }
 //! }
+//! # ;
 //! ```
 //!
 //! By default, the for node collects the given iterable into a `Vec<_>`, however the [`For`](https://docs.rs/leptos/latest/leptos/control_flow/fn.For.html)
 //! component can be used instead by adding the `#[key([expr])]` attribute. (See [iteration](https://book.leptos.dev/view/04_iteration.html) in the leptos book).
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
+//! # leptos::reactive::owner::Owner::new().with(|| {
+//! let items = RwSignal::new(vec![1, 2, 3]);
+//!
 //! rdml! {
 //!     #[key(item.clone())]
 //!     for item in items.get() {
 //!         div { (item) }
 //!     }
 //! }
+//! # ;
+//! # });
 //! ```
 //!
 //! ## Match blocks
 //!
 //! You can also use match statements for control flow (this always generates a move closure with a rust match block)
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
+//! let name = Some("a");
+//! let other_name = "Other name";
+//!
 //! rdml! {
 //!     match name {
 //!         Some("a") => div { "a" }
@@ -102,9 +142,10 @@
 //!             span { "c" }
 //!             button {}
 //!         }
-//!         None => (other_name.to_string()),
+//!         _ => (other_name.to_string()),
 //!     }
 //! }
+//! # ;
 //! ```
 //!
 //! ## With attributes
@@ -112,19 +153,25 @@
 //! Most nodes and blocks can have the `#[with([stmt])]` attribute applied to enter a new scope with the given statment.
 //! This attribute can be applied multiple times.
 //!
-//! ```ignore
+//! ```
+//! # use rdml_leptos::rdml;
+//! # use leptos::prelude::*;
+//! let x = 5;
+//! let string = "hello".to_string();
+//!
 //! rdml! {
 //!     #[with(let value = x + 1;)]
 //!     {
 //!         div {}
 //!         (value)
 //!     }
-//!     #[with(let ref = ref.clone();)]
-//!     #[with(let ref1 = ref.clone();)]
-//!     if condition {
-//!         div { (ref) (ref1) }
+//!     #[with(let string = string.clone();)]
+//!     #[with(let string1 = string.clone();)]
+//!     if x > 2 {
+//!         div { (string.clone()) (string1.clone()) }
 //!     }
 //! }
+//! # ;
 //! ```
 //!
 

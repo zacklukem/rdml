@@ -1204,6 +1204,7 @@ dependencies = [
 name = "rdml_leptos"
 version = "0.1.0"
 dependencies = [
+ "leptos",
  "proc-macro2",
  "quote",
  "rdml",
